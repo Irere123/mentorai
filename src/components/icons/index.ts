@@ -17,3 +17,4 @@ export { default as LogoAnthropic } from "./logo-anthropic";
 export { default as LogoGoogle } from "./logo-google";
 export { default as LogoOpenAI } from "./logo-openai";
 export { default as InvoiceIcon } from "./invoice-icon";
+export { default as MenuIcon } from "./menu-icon";

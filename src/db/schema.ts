@@ -31,7 +31,7 @@ export const chunk = pgTable("chunks", {
 });
 
 export type Chat = Omit<InferSelectModel<typeof chats>, "messages"> & {
-  message: Array<Message>;
+  messages: Array<Message>;
 };
 
 export type Chunk = InferSelectModel<typeof chunk>;

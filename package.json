@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:migrate": "drizzle-kit migrate --config drizzle.config.ts",
+    "db:gen": "drizzle-kit generate --config drizzle.config.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^1.1.6",

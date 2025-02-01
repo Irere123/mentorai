@@ -14,7 +14,7 @@ export const authConfig = {
       const isLoggedIn = !!auth?.user;
       const isOnChat = nextUrl.pathname.startsWith("/");
       const isOnRegister = nextUrl.pathname.startsWith("/register");
-      const isOnLogin = nextUrl.password.startsWith("/login");
+      const isOnLogin = nextUrl.pathname.startsWith("/login");
 
       if (isLoggedIn && (isOnLogin || isOnRegister)) {
         return Response.redirect(new URL("/", nextUrl));
@@ -26,7 +26,7 @@ export const authConfig = {
 
       if (isOnChat) {
         if (isLoggedIn) return true;
-        return false; // Rediret unauthenticated users to login page
+        return false; // Redirect unauthenticated users to login page
       }
 
       if (isLoggedIn) {

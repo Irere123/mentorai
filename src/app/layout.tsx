@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Toaster } from "sonner";
 
 import "./globals.css";
+import { Navbar } from "@/components/navbar";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mentorrai.vercel.app"),
@@ -18,6 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`antialiased`}>
         <Toaster position="top-center" />
+        <Navbar />
         {children}
       </body>
     </html>

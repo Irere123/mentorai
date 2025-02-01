@@ -45,7 +45,7 @@ export const ragMiddleware: LanguageModelV1Middleware = {
       .map((content) => content.text)
       .join("\n");
 
-    const { object: classification } = await generateObject({
+    const { object } = await generateObject({
       model: google("gemini-1.5-flash", {
         structuredOutputs: true,
       }),
@@ -55,15 +55,8 @@ export const ragMiddleware: LanguageModelV1Middleware = {
       prompt: lastUserMessageContent,
     });
 
-    const validTypes = ["question", "statement", "other"];
-    if (!validTypes.includes(classification?.toString() as string)) {
-      console.warn(`Invalid classification received: ${classification}`);
-      messages.push(recentMessage);
-      return params;
-    }
-
     // For non-questions, return immediately without RAG
-    if (classification !== "question") {
+    if ((object as any)?.classification !== "question") {
       messages.push(recentMessage);
       return params;
     }
