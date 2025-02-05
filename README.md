@@ -27,7 +27,7 @@ cp .env.example .env
 # Edit .env and configure required API keys and settings
 
 # Run the development server
-npm run dev
+pnpm run dev
 ```
 
 🔹 Open your browser and navigate to `http://localhost:3000`
