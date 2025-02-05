@@ -76,13 +76,10 @@ export function Chat({
     useScrollBottom<HTMLDivElement>();
 
   return (
-    <div className="flex flex-col h-dvh w-full">
-      <div className="flex flex-col h-full">
-        <div className="flex flex-col flex-1">
-          <div
-            ref={messagesContainerRef}
-            className="flex flex-col gap-4 max-w-3xl w-full mx-auto px-4 overflow-y-auto flex-1 justify-end"
-          >
+    <div className="flex flex-col h-screen max-h-screen w-full">
+      <div className="flex-1 min-h-0">
+        <div ref={messagesContainerRef} className="h-full overflow-y-auto px-4">
+          <div className="max-w-3xl mx-auto flex flex-col gap-4 py-4">
             <div className="flex-1" />
             {messages.map((message, index) => (
               <PreviewMessage
@@ -128,36 +125,38 @@ export function Chat({
           </div>
         </div>
       </div>
-      <form
-        className="flex flex-row gap-2 sticky bottom-0 py-4 px-4 md:px-0 items-center w-full max-w-3xl mx-auto bg-white dark:bg-zinc-900"
-        onSubmit={handleSubmit}
-      >
-        <input
-          className="bg-zinc-100 rounded-xl p-3 flex-1 min-w-0 outline-none dark:bg-zinc-700 text-zinc-800 dark:text-zinc-300"
-          placeholder="Message MentorAI"
-          value={input}
-          onChange={(event) => {
-            setInput(event.target.value);
-          }}
-        />
-
-        <div
-          className="relative text-sm bg-zinc-100 rounded-lg size-9 flex-shrink-0 flex flex-row items-center justify-center cursor-pointer hover:bg-zinc-200 dark:text-zinc-50 dark:bg-zinc-700 dark:hover:bg-zinc-800"
-          onClick={() => {
-            setIsFilesVisible(!isFilesVisible);
-          }}
+      <div className="flex-shrink-0 border-t dark:border-zinc-800">
+        <form
+          className="flex flex-row gap-2 py-4 px-4 md:px-0 items-center w-full max-w-3xl mx-auto bg-white dark:bg-zinc-900"
+          onSubmit={handleSubmit}
         >
-          <FileIcon />
-          <motion.div
-            className="absolute text-xs -top-2 -right-2 bg-blue-500 size-5 rounded-full flex flex-row justify-center items-center border-2 dark:border-zinc-900 border-white text-blue-50"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5 }}
+          <input
+            className="bg-zinc-100 rounded-xl p-3 flex-1 min-w-0 outline-none dark:bg-zinc-700 text-zinc-800 dark:text-zinc-300"
+            placeholder="Message MentorAI"
+            value={input}
+            onChange={(event) => {
+              setInput(event.target.value);
+            }}
+          />
+
+          <div
+            className="relative text-sm bg-zinc-100 rounded-lg size-9 flex-shrink-0 flex flex-row items-center justify-center cursor-pointer hover:bg-zinc-200 dark:text-zinc-50 dark:bg-zinc-700 dark:hover:bg-zinc-800"
+            onClick={() => {
+              setIsFilesVisible(!isFilesVisible);
+            }}
           >
-            {selectedFilePathnames?.length}
-          </motion.div>
-        </div>
-      </form>
+            <FileIcon />
+            <motion.div
+              className="absolute text-xs -top-2 -right-2 bg-blue-500 size-5 rounded-full flex flex-row justify-center items-center border-2 dark:border-zinc-900 border-white text-blue-50"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              {selectedFilePathnames?.length}
+            </motion.div>
+          </div>
+        </form>
+      </div>
       <AnimatePresence>
         {isFilesVisible && (
           <Files
