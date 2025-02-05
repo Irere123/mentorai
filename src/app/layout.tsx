@@ -3,6 +3,7 @@ import { Toaster } from "sonner";
 
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
+import { History } from "@/components/history";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mentorrai.vercel.app"),
@@ -17,10 +18,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>
+      <body className="antialiased">
         <Toaster position="top-center" />
-        <Navbar />
-        {children}
+        <div className="flex flex-row">
+          <History />
+          <div className="flex flex-col flex-1 bg-white dark:bg-zinc-900">
+            <Navbar />
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );
